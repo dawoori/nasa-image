@@ -1,7 +1,7 @@
 import React from 'react';
-import PropTypes from 'prop-types';
 
 class App extends React.Component {
+  
   state = {
     count: 0
   };
@@ -15,6 +15,7 @@ class App extends React.Component {
   };
 
   render() {
+    console.log("component rendering");
     return (
       <div>
         <h1>I'm a class component {this.state.count}</h1>
@@ -22,6 +23,14 @@ class App extends React.Component {
         <button onClick={this.min}>Min</button>
       </div>
     );
+  }
+
+  componentDidMount() {
+    console.log("component rendered");
+  }
+
+  componentDidUpdate() {
+    console.log("component updated");
   }
 }
 

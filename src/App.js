@@ -1,36 +1,23 @@
-import React from 'react';
+import React from "react";
+import axios from "axios";
 
 class App extends React.Component {
-  
   state = {
-    count: 0
+    isLoading: true,
+    images: []
   };
-
-  add = () => {
-    this.setState(current => ({ count: current.count + 1 }));
-  };
-
-  min = () => {
-    this.setState(current => ({ count: current.count - 1 }));
-  };
-
-  render() {
-    console.log("component rendering");
-    return (
-      <div>
-        <h1>I'm a class component {this.state.count}</h1>
-        <button onClick={this.add}>Add</button>
-        <button onClick={this.min}>Min</button>
-      </div>
-    );
-  }
 
   componentDidMount() {
-    console.log("component rendered");
+    const images = axios.get("https://images-api.nasa.gov/search?q=cloud");
   }
 
-  componentDidUpdate() {
-    console.log("component updated");
+  render() {
+    const { isLoading } = this.state;
+    return (
+      <div>
+        {isLoading ? "Loading" : "ready"}
+      </div>
+    );
   }
 }
 

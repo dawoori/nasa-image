@@ -7,11 +7,13 @@ class App extends React.Component {
   state = {
     isLoading: true,
     images: [],
-    api: "https://images-api.nasa.gov/search?q=seoul",
-    searchWord: "seoul"
+    renderingImages: [],
+    api: "https://images-api.nasa.gov/search?q=cloud",
+    searchWord: "cloud"
   };
 
   getImages = async () => {
+    console.log("getting");
     const { api } = this.state;
     const { data: { collection: { items } } } = await axios.get(api);
     this.setState({ images: items, isLoading: false });
@@ -20,10 +22,11 @@ class App extends React.Component {
   componentDidMount() {
     this.getImages();
   };
-
+  
   search = (e) => {
     e.preventDefault();
     var { searchWord } = this.state;
+    // eslint-disable-next-line
     this.state.api = "https://images-api.nasa.gov/search?q=" + searchWord;
     this.setState({ isLoading: true });
     this.getImages();
@@ -32,18 +35,20 @@ class App extends React.Component {
   textInput = (e) => {
     this.setState({ searchWord: e.target.value });
   };
-
+  
   render() {
     const { isLoading, images } = this.state;
+
     return (
       <section className="container">
         <div className="search">
-        <form onSubmit={this.search}>
-          <input type="text" value={this.state.searchWord} onChange={this.textInput} placeholder="검색어 입력" />
-          <button type="submit">Search</button>
-        </form>
+          <form onSubmit={this.search}>
+            <input className="searchInput" type="text" value={this.state.searchWord} onChange={this.textInput} placeholder="검색어 입력" />
+            <button type="submit">Search</button>
+          </form>
+          <button onClick={() => console.log()}>more</button>
         </div>
-        
+
         {isLoading
           ? <div className="loader">
             <span className="loader_text">Loading...</span>

@@ -8,13 +8,13 @@ function Image({ nasa_id, date, title, description, href, keywords }) {
             <img src={href} alt={title} title={title}></img>
             <div className="image_data">
                 <h3 className="image_title">{title}</h3>
-                <ul className="keywords">
+                {/* <ul className="keywords">
                     {keywords.map((keyword,index) => (
                         <li key={index} className="keywords_keyword">{keyword}</li>
                     ))}
-                </ul>
+                </ul> */}
                 <h5 className="image_date">{date}</h5>
-                <p className="image_description">{description.slice(0, 150)}...</p>
+                <p className="image_description">{description.slice(0, 200)}...</p>
             </div>
         </div>
     );

@@ -6,22 +6,44 @@ import "./App.css";
 class App extends React.Component {
   state = {
     isLoading: true,
-    images: []
+    images: [],
+    api: "https://images-api.nasa.gov/search?q=seoul",
+    searchWord: "seoul"
   };
 
   getImages = async () => {
-    const { data: { collection: { items } } } = await axios.get("https://images-api.nasa.gov/search?q=cloud");
+    const { api } = this.state;
+    const { data: { collection: { items } } } = await axios.get(api);
     this.setState({ images: items, isLoading: false });
   };
 
   componentDidMount() {
     this.getImages();
-  }
+  };
+
+  search = (e) => {
+    e.preventDefault();
+    var { searchWord } = this.state;
+    this.state.api = "https://images-api.nasa.gov/search?q=" + searchWord;
+    this.setState({ isLoading: true });
+    this.getImages();
+  };
+  
+  textInput = (e) => {
+    this.setState({ searchWord: e.target.value });
+  };
 
   render() {
     const { isLoading, images } = this.state;
     return (
       <section className="container">
+        <div className="search">
+        <form onSubmit={this.search}>
+          <input type="text" value={this.state.searchWord} onChange={this.textInput} placeholder="검색어 입력" />
+          <button type="submit">Search</button>
+        </form>
+        </div>
+        
         {isLoading
           ? <div className="loader">
             <span className="loader_text">Loading...</span>

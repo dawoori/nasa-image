@@ -29,10 +29,12 @@ body {
 .search {
   background-color: #328d67;
   align-items: center;
+  justify-content: center;
   height: 30px;
   width: 100%;
   position: absolute;
 }
+
 .searchInput {
   margin: 5px;
   align-items: center;
@@ -46,4 +48,11 @@ body {
   padding: 50px;
   padding-top: 100px;
   width: 100%;
+}
+
+.more {
+  align-items: center;
+  position: absolute;
+  clear: both;
+  height: 30px;
 }

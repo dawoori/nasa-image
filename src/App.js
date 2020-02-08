@@ -8,6 +8,7 @@ class App extends React.Component {
     isLoading: true,
     images: [],
     renderingImages: [],
+    num: 10,
     api: "https://images-api.nasa.gov/search?q=cloud",
     searchWord: "cloud"
   };
@@ -19,10 +20,15 @@ class App extends React.Component {
     this.setState({ images: items, isLoading: false });
   };
 
+  cutImages = () => {
+    const { images } = this.state;
+    this.setState({ renderingImages: images.slice(0, 10) });
+  }
+
   componentDidMount() {
     this.getImages();
   };
-  
+
   search = (e) => {
     e.preventDefault();
     var { searchWord } = this.state;
@@ -31,13 +37,15 @@ class App extends React.Component {
     this.setState({ isLoading: true });
     this.getImages();
   };
-  
+
   textInput = (e) => {
     this.setState({ searchWord: e.target.value });
   };
-  
+
   render() {
-    const { isLoading, images } = this.state;
+    const { isLoading, images, renderingImages, num } = this.state;
+    // this.cutImages();
+    console.log(renderingImages);
 
     return (
       <section className="container">
@@ -45,8 +53,8 @@ class App extends React.Component {
           <form onSubmit={this.search}>
             <input className="searchInput" type="text" value={this.state.searchWord} onChange={this.textInput} placeholder="검색어 입력" />
             <button type="submit">Search</button>
+
           </form>
-          <button onClick={() => console.log()}>more</button>
         </div>
 
         {isLoading
@@ -55,7 +63,7 @@ class App extends React.Component {
           </div>
           : (
             <div className="images">
-              {images.map(image => (
+              {images.slice(0, num).map(image => (
                 <Image
                   key={image.data[0].nasa_id}
                   nasa_id={image.data[0].nasa_id}
@@ -68,6 +76,7 @@ class App extends React.Component {
               ))}
             </div>
           )}
+        <button className="more" onClick={() => this.setState({ num: 20 })}>more</button>
       </section>
     );
   }

@@ -33,6 +33,10 @@ body {
   text-align: center;
 }
 
+.search_option {
+  height: 23px;
+}
+
 .searchInput {
   margin: 5px;
   height: 100%;

@@ -27,6 +27,9 @@ body {
 }
 
 .search {
+  position: fixed;
+  top: 0;
+  z-index: 1;
   background-color: #328d67;
   height: 40px;
   width: 100%;

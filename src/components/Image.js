@@ -4,6 +4,7 @@ import PropTypes from "prop-types";
 import "./Image.css";
 
 function Image({ nasa_id, date, title, description, href }) {
+
   return (
     <div className="image">
       <Link
@@ -17,7 +18,7 @@ function Image({ nasa_id, date, title, description, href }) {
             href
           }
         }}>
-      <img src={href} alt={title} title={title}></img>
+        <img src={href} alt={title} title={title}></img>
       </Link>
       <Link
         to={{
@@ -30,9 +31,9 @@ function Image({ nasa_id, date, title, description, href }) {
             href
           }
         }}>
-      <div className="image_data">
-        <h3 className="image_title">{title}</h3>
-        <h5 className="image_date">{date}</h5>
+        <div className="image_data">
+          <h3 className="image_title">{title}</h3>
+          <h5 className="image_date">{date}</h5>
           <p className="image_description">{description.slice(0, 200)}{description.length > 200 ? "..." : ""}</p>
         </div>
       </Link>

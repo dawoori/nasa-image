@@ -6,7 +6,7 @@ import Detail from  "./components/Detail";
 function App() {
   return (
     <BrowserRouter>
-      <Route path="/" exact={true} component={Home}/>
+      <Route path="/" component={Home}/>
       <Route path="/:nasa_id" component={Detail}/>
     </BrowserRouter>
   );

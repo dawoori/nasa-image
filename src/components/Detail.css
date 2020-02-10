@@ -1,9 +1,11 @@
 .image_detail {
+    border: 2px solid black;
+    display: flex;
     position: fixed;
-    top: 40px;
-    left: 20%;
+    top: 50px;
+    left: 10%;
     background-color: aliceblue;
-    width: 50%;
+    max-width: 80%;
     margin: 0 auto;
     padding-top : 10px;
     padding-right : 10px;
